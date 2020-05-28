@@ -18,6 +18,12 @@ const server = http.createServer((req, res) => {
 	} else if (method === 'GET' && url === '/students') {
 		res.setHeader('Content-Type', 'application/json');
 		res.end(JSON.stringify(students));
+	} else {
+		res.statusCode = 404; // status code for route not found
+		res.setHeader('Content-Type', 'text/plain');
+		res.end('Not Found'); // not found message
+		console.log('Invalid Route'); //log err with message
+		throw 'Route not found'; //throws err to catch/handle later
 	}
 	// res.statusCode = 200; // status code
 	// res.setHeader('Content-Type', 'text/plain'); // set content type for header
